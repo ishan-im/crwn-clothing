@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useContext } from "react";
 
-import Button from '../button/button.component';
+import Button from "../button/button.component";
 
-import './CartDropdown.styles.scss'
+import { cartContext } from "../../context/cartContext";
 
-const CartDropdown = () => (
-  <div className='cart-dropdown-container'>
-    <div className='cart-items' />
-    <Button>GO TO CHECKOUT</Button>
-  </div>
-);
+import "./CartDropdown.styles.scss";
+
+import CartItem from "../Cart-Item/CartItem";
+
+const CartDropdown = () => {
+
+    const { cartItems} = useContext(cartContext);
+
+  return (
+    <div className="cart-dropdown-container">
+      <div className="cart-items" />
+      {cartItems.map((item) => (
+        <CartItem key={item.id} item={item} />
+      ))}
+      <Button>CHECKOUT</Button>
+    </div>
+  );
+};
 
 export default CartDropdown;
