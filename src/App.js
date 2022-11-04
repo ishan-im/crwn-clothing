@@ -7,10 +7,7 @@ import SignIn from './routes/auth/sign-in';
 
 import Navigation from './routes/navigation/navigation.component';
 
-
-const Shop = () => {
-  return <h1>I am the shop page</h1>;
-};
+import Shop from './routes/shop/shop';
 
 const App = () => {
   return (
