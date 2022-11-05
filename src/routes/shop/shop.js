@@ -12,8 +12,8 @@ const {products} = useContext(ProductContext)
 
   return (
     <div className="products-container">
-      {products.map((products) => (
-        <ProductCard key={products.id} product={products} />
+      {products !== undefined && products?.map((product) => (
+        <ProductCard key={product.id} product={product} />
       ))}
     </div>
   );

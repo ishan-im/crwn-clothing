@@ -1,6 +1,8 @@
-import { createContext ,useState} from "react";
+import { createContext ,useState,useEffect} from "react";
 
-import PRODUCTS from '../assets/shop-data.json'
+import { addCollectionAndDocuments,getCategoriesAndDocuments } from "../utils/firebase/firebase-util.js";
+
+
 
 export const ProductContext = createContext({
     products: [],
@@ -10,7 +12,20 @@ export const ProductContext = createContext({
 
 export const ProductsProvider = ({ children }) => {
 
-    const [products,setProducts]= useState(PRODUCTS)
+    const [products,setProducts]= useState([])
+
+    useEffect(()=>{
+
+        const getProducts = async ()=>{
+            const products = await getCategoriesAndDocuments()
+            console.log(products);
+            setProducts(products)
+        }
+
+        getProducts()
+
+    },[])
+
 
     const value = {products,setProducts}
 
